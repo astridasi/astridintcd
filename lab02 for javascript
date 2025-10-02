@@ -1,0 +1,18 @@
+var i,j,a,b,c;
+// i for initial
+i = "eva";
+// j just follow
+j = "adam";
+// and so the a/b/c thing
+a = "lost paradise";
+b = "heaven";
+c = "snake";
+
+var array=[];
+array[0]=i;
+array[1]=j;
+array[2]=a;
+array[3]=b;
+array[4]=c;
+console.log(array);
+console.log(array[2],array[3]);
