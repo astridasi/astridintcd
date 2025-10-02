@@ -1,0 +1,22 @@
+var playerScores = [];
+
+function addscore() {
+    let playerScore1 = prompt('The score of you is?');
+    var score1 =  parseInt (playerScore1);
+    playerScores.push(score1) ;
+    if (playerScores.length < 3);
+    let playerScore2 = prompt('The score of you is?');
+    var score2 =  parseInt (playerScore2);
+    playerScores.push(score2) ;
+}
+
+addscore();
+console.log(playerScores);
+var i;
+for (i = 0;i < playerScores.length;i++)
+ if(playerScores[i]%2 == 0)
+   {console.log("your score is a even")} 
+ else
+{console.log("your score is a odd")}; 
+   
+    
