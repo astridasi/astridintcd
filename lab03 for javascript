@@ -1,0 +1,11 @@
+function toeuro(USD,CNY){
+const RATE1 = 0.85
+const RATE2 = 0.11
+let re1 = USD * RATE1;
+let re2 = CNY * RATE2;
+
+return [re1,re2]
+}
+
+let result = toeuro(100,100)
+console.log(result);
