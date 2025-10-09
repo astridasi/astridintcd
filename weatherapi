@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let datasource = `https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m`;
+        fetch(datasource)
+            .then(Response => {
+                return Response.json()
+            })
+            .then(data => {
+                data.hourly.temperature_2m
+                let tems = data.hourly.temperature_2m;
+                let showtem = document.createElement("li");
+                showtem.textContent = tems[0]
+                document.getElementById("tempofyourhometown").appendChild(showtem)
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    </script>
+</head>
+
+<body>
+    <ul id="tempofyourhometown"></ul>
+</body>
+
+</html>
