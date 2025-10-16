@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h3 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        ul {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Playlist</h3>
+    <button>Add</button>
+    <ul id="songlist"></ul>
+    <script>
+        fetch("song.json")
+            .then(response => response.json())
+            .then(jsonData => {
+                console.log(jsonData);
+                songs = jsonData;
+            })
+            .catch(error => console.error('Error:', error));
+
+        const btn = document.querySelector("button")
+        const songlist = document.getElementById("songlist")
+
+        btn.addEventListener("click", function () {
+            songlist.innerHTML = "";
+            for (let i = 0; i < songs.length; i++) {
+                console.log(songs[i].song);
+            }
+            songs.forEach((item) => {
+                const li = document.createElement("li");
+                li.textContent = item.singer + " - " + item.song + " (" + item.Album + ")";
+                songlist.appendChild(li);
+            });
+            songlist.style.display = "block";
+        });
+    </script>
+</body>
+
+</html>
