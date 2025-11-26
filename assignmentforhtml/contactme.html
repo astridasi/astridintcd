@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Me</title>
+    <style>
+      body {
+        position: relative;
+        font-family: monospace;
+        padding: 0;
+        margin: 0;
+        background-color: #E7E0E8;
+      }
+      div .nav {
+        position: absolute;
+        height: 150px;
+        width: 100%;
+      }
+
+      .pixel-button {
+        display: inline-block;
+        padding: 10px 20px;
+        font-family: monospace;
+        font-size: 16px;
+        background-color: white;
+        color: #333;
+        cursor: pointer;
+        text-align: center;
+        border: 3px solid;
+        border-top-color: #ffffff;
+        border-left-color: #ffffff;
+        border-right-color: #808080;
+        border-bottom-color: #808080;
+        box-shadow: 0 0 2px #000000;
+      }
+      .activepage {
+        background-color: #c0c0c0;
+      }
+      .pixel-button:active {
+        border-top-color: #808080; 
+        border-left-color: #808080; 
+        border-right-color: #ffffff; 
+        border-bottom-color: #ffffff; 
+        transform: translateY(1px);
+      }
+      .buttons {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        gap: 20px;
+        padding-top: 30px;
+        margin-right: 30px;
+      }
+      a {
+        text-decoration: none;
+        color: black;
+      }
+      .nav img {
+        width: 100px;
+        height: auto;
+      }
+.bbs-container {
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 20px;
+        width: 680px;
+        border: 2px solid #3c3c44;
+        border-radius: 12px;
+        background: rgba(42, 42, 50, 0.9);
+        box-shadow: 0 0 15px rgba(255, 230, 180, 0.05);
+        padding: 24px;
+      }
+      .bbs-header {
+        text-align: center;
+        border-bottom: 1px dashed #44444c;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+      .bbs-header h1 {
+        color: #ffcc66;
+        font-size: 14px;
+        margin: 0;
+      }
+      .bbs-header p {
+        color: #a8b0b8;
+        font-size: 11px;
+        margin-top: 6px;
+      }
+      .bbs-log {
+        height: 260px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        padding-right: 10px;
+      }
+      .bbs-line {
+        margin: 6px 0;
+        color: #f5e6cc;
+        font-size: 12px;
+      }
+      .bbs-form {
+        display: flex;
+        flex-direction: column;
+      }
+      input,
+      textarea {
+        width: 100%;
+        background: #2f2f36;
+        border: 1px solid #3c3c44;
+        border-radius: 4px;
+        color: #f5e6cc;
+        padding: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        resize: none;
+        outline: none;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: #888;
+      }
+      .bbs-button {
+        margin-top: 10px;
+        background: #3c3c44;
+        border: 1px solid #ffcc66;
+        color: #ffcc66;
+        padding: 6px 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-family: monospace;
+      }
+      .bbs-button:hover {
+        background: #ffcc66;
+        color: #2a2a32;
+      }
+      .typing {
+        border-right: 2px solid #ffcc66;
+        animation: blink 0.8s infinite;
+      }
+      @keyframes blink {
+        0%,
+        50%,
+        100% {
+          border-color: transparent;
+        }
+        25%,
+        75% {
+          border-color: #ffcc66;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="headicon"></div>
+    <div class="nav">
+      <div class="buttons">
+        <img src="image/ctcm.jpg" />
+        <div class="pixel-button"><a href="Homepage.html">Homepage</a></div>
+        <div class="pixel-button"><a href="myprogram.html">My Program</a></div>
+        <div class="pixel-button">
+          <a href="workshowcase.html">Work Showcase</a>
+        </div>
+        <div class="pixel-button activepage">
+          <a href="contactme.html">Contact Me</a>
+        </div>
+      </div>
+    </div>
+   <div class="bbs-container">
+      <div class="bbs-header">
+        <h1>✦ Game Designer BBS ✦</h1>
+        <p>Leave your message for Astrid...</p>
+      </div>
+
+      <div class="bbs-log" id="bbsLog">
+        <div class="bbs-line">[System] Connected to local node.</div>
+        <div class="bbs-line">
+          [System] Welcome to the quiet board of Strinova.
+        </div>
+      </div>
+
+      <form class="bbs-form" id="bbsForm">
+        <input type="text" id="name" placeholder="> Name (optional)" />
+        <textarea
+          id="message"
+          rows="3"
+          placeholder="> Type your message here..."
+        ></textarea>
+        <button type="submit" class="bbs-button">[ Send Message ]</button>
+      </form>
+    <script>
+      const button = document.querySelector(".activepage");
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+      });
+      const log = document.getElementById("bbsLog");
+      const form = document.getElementById("bbsForm");
+
+      function typeLine(text, delay = 30) {
+        return new Promise((resolve) => {
+          const line = document.createElement("div");
+          line.classList.add("bbs-line");
+          log.appendChild(line);
+          log.scrollTop = log.scrollHeight;
+
+          let i = 0;
+          const interval = setInterval(() => {
+            line.textContent = text.slice(0, i);
+            i++;
+            if (i > text.length) {
+              clearInterval(interval);
+              resolve();
+            }
+            log.scrollTop = log.scrollHeight;
+          }, delay);
+        });
+      }
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value || "Anonymous";
+        const message = document.getElementById("message").value.trim();
+        if (!message) return;
+
+        document.getElementById("message").value = "";
+        await typeLine(`[${name}] ${message}`);
+        await typeLine(`[System] Message received. Thank you, ${name}.`);
+      });
+    </script>
+  </body>
+</html>
